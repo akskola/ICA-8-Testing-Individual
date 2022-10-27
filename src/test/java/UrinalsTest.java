@@ -14,8 +14,14 @@ public class UrinalsTest {
     }
 
     @Test
-    void checkAnEmptyString() {
-        System.out.println("====== Akshay Reddy Kola == TEST ONE EXECUTED =======");
+    void checkIfInputStringIsEmpty() {
+        System.out.println("====== Akshay Reddy Kola == TEST TWO EXECUTED =======");
         Assertions.assertFalse(Urinals.goodString(""));
+    }
+
+    @Test
+    void checkIfInputStringContainsInvalidCharacters() {
+        System.out.println("====== Akshay Reddy Kola == TEST THREE EXECUTED =======");
+        Assertions.assertFalse(Urinals.goodString("@ftq78"));
     }
 }
