@@ -1,7 +1,11 @@
 /**
  * @author Akshay Reddy Kola
  */
+
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 
@@ -21,17 +25,14 @@ public class Urinals {
         return true;
     }
 
-    public static void readInputFile() {
-        try{
-            File file = new File(INPUT_PATH);
-            Scanner scanner = new Scanner(file);
-            while (scanner.hasNextLine()) {
-                String line = scanner.nextLine();
-                System.out.println(line);
-            }
+    public static List<String> readInputFile(String path) throws FileNotFoundException {
+        List<String> inputRow = new ArrayList<>();
+        File file = new File(path);
+        Scanner scanner = new Scanner(file);
+        while (scanner.hasNextLine()) {
+            String line = scanner.nextLine();
+            inputRow.add(line);
         }
-        catch (Exception e){
-            e.printStackTrace();
-        }
+        return inputRow;
     }
 }
