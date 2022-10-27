@@ -34,8 +34,14 @@ public class UrinalsTest {
     }
 
     @Test
-    void checkIfInputFilePathIsCorrectOrNot() {
+    void checkIfInputFilePathThrowsFileNotFoundException() {
         System.out.println("====== Akshay Reddy Kola == TEST FIVE EXECUTED =======");
         Assertions.assertThrows(FileNotFoundException.class, () -> Urinals.readInputFile("WrongPath"));
+    }
+
+    @Test
+    void checkIfInputFileThrowsNumberFormatException() {
+        System.out.println("====== Akshay Reddy Kola == TEST SIX EXECUTED =======");
+        Assertions.assertThrows(NumberFormatException.class, () -> Urinals.readInputFile("sampleInputFiles/NumberFormatException.dat"));
     }
 }

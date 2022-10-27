@@ -31,7 +31,14 @@ public class Urinals {
         Scanner scanner = new Scanner(file);
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
-            inputRow.add(line);
+            if(line.equals("-1")){
+                break;
+            } else if (!goodString(line)) {
+                throw new NumberFormatException();
+            }
+            else{
+                inputRow.add(line);
+            }
         }
         return inputRow;
     }
