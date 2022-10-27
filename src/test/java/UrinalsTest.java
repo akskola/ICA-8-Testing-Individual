@@ -12,4 +12,10 @@ public class UrinalsTest {
         System.out.println("====== Akshay Reddy Kola == TEST ONE EXECUTED =======");
         Assertions.assertTrue(Urinals.goodString("10001"));
     }
+
+    @Test
+    void checkAnEmptyString() {
+        System.out.println("====== Akshay Reddy Kola == TEST ONE EXECUTED =======");
+        Assertions.assertFalse(Urinals.goodString(""));
+    }
 }
