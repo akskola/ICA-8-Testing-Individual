@@ -22,14 +22,20 @@ public class UrinalsTest {
     }
 
     @Test
-    void checkIfInputStringContainsInvalidCharacters() {
+    void checkIfInputStringContainsInvalidNumbers() {
         System.out.println("====== Akshay Reddy Kola == TEST THREE EXECUTED =======");
-        Assertions.assertFalse(Urinals.goodString("@ftq78"));
+        Assertions.assertFalse(Urinals.goodString("016278"));
+    }
+
+    @Test
+    void checkIfInputStringContainsOtherInvalidCharacters() {
+        System.out.println("====== Akshay Reddy Kola == TEST FOUR EXECUTED =======");
+        Assertions.assertFalse(Urinals.goodString("@--==asd!|"));
     }
 
     @Test
     void checkIfInputFilePathIsCorrectOrNot() {
-        System.out.println("====== Akshay Reddy Kola == TEST FOUR EXECUTED =======");
-        Assertions.assertThrows(FileNotFoundException.class, () ->Urinals.readInputFile("WrongPath"));
+        System.out.println("====== Akshay Reddy Kola == TEST FIVE EXECUTED =======");
+        Assertions.assertThrows(FileNotFoundException.class, () -> Urinals.readInputFile("WrongPath"));
     }
 }
