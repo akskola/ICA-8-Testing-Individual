@@ -30,7 +30,7 @@ public class UrinalsTest {
     @Test
     void checkIfInputStringContainsOtherInvalidCharacters() {
         System.out.println("====== Akshay Reddy Kola == TEST FOUR EXECUTED =======");
-        Assertions.assertFalse(Urinals.goodString("@--==asd!|"));
+        Assertions.assertFalse(Urinals.goodString("@-_=$%a!|"));
     }
 
     @Test
@@ -43,5 +43,11 @@ public class UrinalsTest {
     void checkIfInputFileThrowsNumberFormatException() {
         System.out.println("====== Akshay Reddy Kola == TEST SIX EXECUTED =======");
         Assertions.assertThrows(NumberFormatException.class, () -> Urinals.readInputFile("sampleInputFiles/NumberFormatException.dat"));
+    }
+
+    @Test
+    void checkIfInputFileThrowsEmptyFileException() {
+        System.out.println("====== Akshay Reddy Kola == TEST SEVEN EXECUTED =======");
+        Assertions.assertThrows(EmptyFileException.class, () -> Urinals.readInputFile("sampleInputFiles/EmptyFileException.dat"));
     }
 }

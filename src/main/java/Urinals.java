@@ -25,20 +25,25 @@ public class Urinals {
         return true;
     }
 
-    public static List<String> readInputFile(String path) throws FileNotFoundException {
+    public static List<String> readInputFile(String path) throws FileNotFoundException, EmptyFileException {
         List<String> inputRow = new ArrayList<>();
         File file = new File(path);
         Scanner scanner = new Scanner(file);
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
-            if(line.equals("-1")){
-                break;
-            } else if (!goodString(line)) {
+            if (!goodString(line)) {
                 throw new NumberFormatException();
+            }
+            else if (line.equals("-1")){
+                break;
             }
             else{
                 inputRow.add(line);
             }
+        }
+        scanner.close();
+        if(inputRow.isEmpty()){
+            throw new EmptyFileException();
         }
         return inputRow;
     }
