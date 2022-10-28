@@ -14,7 +14,7 @@ public class Urinals {
     static String INPUT_PATH = "urinal.dat";
 
     public static boolean goodString(String str) {
-        if(str.length() == 0){
+        if(str.length() == 0 || str.length() > 20){
             return false;
         }
         for(int i = 0; i < str.length(); i++){

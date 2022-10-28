@@ -10,9 +10,11 @@ import java.io.FileNotFoundException;
 public class UrinalsTest {
 
     @Test
-    void goodString() {
+    void CheckIfInputStringIsValid() {
         System.out.println("====== Akshay Reddy Kola == TEST ONE EXECUTED =======");
         Assertions.assertTrue(Urinals.goodString("10001"));
+        Assertions.assertFalse(Urinals.goodString(""));
+        Assertions.assertFalse(Urinals.goodString("10101000101010101011110000010"));
     }
 
     @Test
