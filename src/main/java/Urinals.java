@@ -4,14 +4,15 @@
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.*;
 
 
 public class Urinals {
 
     static String INPUT_PATH = "urinal.dat";
+    static String OUTPUT_PATH = "sampleOutputFiles/";
 
     public static boolean goodString(String str) {
         if(str.length() == 0 || str.length() > 20){
@@ -76,5 +77,27 @@ public class Urinals {
             }
         }
         return 0;
+    }
+
+    public static void createOutputFile(List<Integer> integerList) throws IOException {
+        String fileName = "rule.txt";
+        File folder = new File(".");
+        List<String> fileNames = Arrays.stream(Objects.requireNonNull(folder.listFiles())).map(File::getName)
+                .filter(name -> name.matches("rule.*.txt")).sorted().toList();
+        if (!fileNames.isEmpty()) {
+            String hNum = fileNames.get(fileNames.size() - 1);
+            String fileNumber = hNum.substring(4, hNum.length() - 4);
+            if (fileNumber.length() > 0) {
+                fileName = String.format("rule%d.txt", Integer.parseInt(fileNumber) + 1);
+            }
+            else {
+                fileName = "rule1.txt";
+            }
+        }
+        FileWriter file = new FileWriter(fileName);
+        for(Integer x : integerList) {
+            file.write(x.toString()+"\n");
+        }
+        file.close();
     }
 }

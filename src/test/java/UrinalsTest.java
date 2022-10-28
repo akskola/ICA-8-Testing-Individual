@@ -5,8 +5,13 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 public class UrinalsTest {
 
@@ -66,9 +71,35 @@ public class UrinalsTest {
 
     @Test
     void checkIfInputStringContainsAdjacentOnes() {
-        System.out.println("====== Akshay Reddy Kola == TEST EIGHT EXECUTED =======");
+        System.out.println("====== Akshay Reddy Kola == TEST NINE EXECUTED =======");
         Assertions.assertEquals(-1, Urinals.countUrinals(List.of("10011")));
         Assertions.assertEquals(-1, Urinals.countUrinals(List.of("101101")));
         Assertions.assertEquals(-1, Urinals.countUrinals(List.of("0011000")));
+    }
+
+    void removePreviousFiles() {
+        File folder = new File(".");
+        List<String> fileNames = Arrays.stream(Objects.requireNonNull(folder.listFiles())).map(File::getName)
+                .filter(name -> name.matches("rule.*.txt")).sorted().toList();
+        if(!fileNames.isEmpty()){
+            fileNames.forEach(fileName -> {
+                File file = new File(fileName);
+                try {
+                    Files.deleteIfExists(file.toPath());
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            });
+        }
+    }
+
+    @Test
+    void checkIfOutputFilesAreCreated() throws IOException {
+        System.out.println("====== Akshay Reddy Kola == TEST TEN EXECUTED =======");
+        removePreviousFiles();
+        File fileName = new File("rule.txt");
+        List<Integer> intList = Arrays.asList(0, 2, 1);
+        Urinals.createOutputFile(intList);
+        Assertions.assertTrue(fileName.exists());
     }
 }
