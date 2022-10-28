@@ -97,9 +97,33 @@ public class UrinalsTest {
     void checkIfOutputFilesAreCreated() throws IOException {
         System.out.println("====== Akshay Reddy Kola == TEST TEN EXECUTED =======");
         removePreviousFiles();
-        File fileName = new File("rule.txt");
+
         List<Integer> intList = Arrays.asList(0, 2, 1);
         Urinals.createOutputFile(intList);
+
+        File fileName = new File("rule.txt");
         Assertions.assertTrue(fileName.exists());
+    }
+
+    @Test
+    void checkIfDuplicateOutputFilesAreNamedCorrectly() throws IOException {
+        System.out.println("====== Akshay Reddy Kola == TEST ELEVEN EXECUTED =======");
+        removePreviousFiles();
+
+        List<Integer> intList1 = Arrays.asList(0, 2, 1);
+        List<Integer> intList2 = Arrays.asList(0, 0);
+        List<Integer> intList3 = Arrays.asList(2, 4, 0, 1, 5, 2, 7);
+
+        Urinals.createOutputFile(intList1);
+        Urinals.createOutputFile(intList2);
+        Urinals.createOutputFile(intList3);
+
+        File fileName1 = new File("rule.txt");
+        File fileName2 = new File("rule1.txt");
+        File fileName3 = new File("rule2.txt");
+
+        Assertions.assertTrue(fileName1.exists());
+        Assertions.assertTrue(fileName2.exists());
+        Assertions.assertTrue(fileName3.exists());
     }
 }
