@@ -64,4 +64,11 @@ public class UrinalsTest {
         Assertions.assertEquals(1, Urinals.countUrinals(List.of("01000")));
     }
 
+    @Test
+    void checkIfInputStringContainsAdjacentOnes() {
+        System.out.println("====== Akshay Reddy Kola == TEST EIGHT EXECUTED =======");
+        Assertions.assertEquals(-1, Urinals.countUrinals(List.of("10011")));
+        Assertions.assertEquals(-1, Urinals.countUrinals(List.of("101101")));
+        Assertions.assertEquals(-1, Urinals.countUrinals(List.of("0011000")));
+    }
 }
