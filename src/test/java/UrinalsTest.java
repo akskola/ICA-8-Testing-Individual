@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.io.FileNotFoundException;
+import java.util.List;
 
 public class UrinalsTest {
 
@@ -52,4 +53,15 @@ public class UrinalsTest {
         System.out.println("====== Akshay Reddy Kola == TEST SEVEN EXECUTED =======");
         Assertions.assertThrows(EmptyFileException.class, () -> Urinals.readInputFile("sampleInputFiles/EmptyFileException.dat"));
     }
+
+    @Test
+    void checkIfCountUrinalsReturnsExpectedOutput() {
+        System.out.println("====== Akshay Reddy Kola == TEST EIGHT EXECUTED =======");
+        Assertions.assertEquals(1, Urinals.countUrinals(List.of("10001")));
+        Assertions.assertEquals(0, Urinals.countUrinals(List.of("1001")));
+        Assertions.assertEquals(3, Urinals.countUrinals(List.of("00000")));
+        Assertions.assertEquals(2, Urinals.countUrinals(List.of("0000")));
+        Assertions.assertEquals(1, Urinals.countUrinals(List.of("01000")));
+    }
+
 }

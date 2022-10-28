@@ -47,4 +47,34 @@ public class Urinals {
         }
         return inputRow;
     }
+
+    public static int countUrinals(List<String> stringList){
+        for(String string: stringList){
+            if(Urinals.goodString(string)){
+                if(string.contains("11")) {
+                    return -1;
+                }
+                if(string.length() == 1) {
+                    return string.contains("0") ? 1 : 0;
+                }
+                int c = 0;
+                char[] ur = string.toCharArray();
+                if(ur[0] == '0' && ur[1] == '0') {
+                    ur[0] = '1';
+                    c++;
+                }
+                for(int i = 1; i < string.length()-1; i++ ) {
+                    if(ur[i] == '0' && ur[i-1] == '0' && ur[i+1]== '0') {
+                        ur[i] = 1;
+                        c++;
+                    }
+                }
+                if(ur[string.length()-1] == '0' && ur[string.length()-2]=='0') {
+                    c++;
+                }
+                return c;
+            }
+        }
+        return 0;
+    }
 }
