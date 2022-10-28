@@ -12,10 +12,9 @@ import java.util.*;
 public class Urinals {
 
     static String INPUT_PATH = "urinal.dat";
-    static String OUTPUT_PATH = "sampleOutputFiles/";
 
     public static boolean goodString(String str) {
-        if(str.length() == 0 || str.length() > 20){
+        if(str.length() < 1 || str.length() > 20){
             return false;
         }
         for(int i = 0; i < str.length(); i++){
@@ -38,9 +37,7 @@ public class Urinals {
             else if (line.equals("-1")){
                 break;
             }
-            else{
-                inputRow.add(line);
-            }
+            inputRow.add(line);
         }
         scanner.close();
         if(inputRow.isEmpty()){
@@ -49,32 +46,30 @@ public class Urinals {
         return inputRow;
     }
 
-    public static int countUrinals(List<String> stringList){
-        for(String string: stringList){
-            if(Urinals.goodString(string)){
-                if(string.contains("11")) {
-                    return -1;
-                }
-                if(string.length() == 1) {
-                    return string.contains("0") ? 1 : 0;
-                }
-                int c = 0;
-                char[] ur = string.toCharArray();
-                if(ur[0] == '0' && ur[1] == '0') {
-                    ur[0] = '1';
-                    c++;
-                }
-                for(int i = 1; i < string.length()-1; i++ ) {
-                    if(ur[i] == '0' && ur[i-1] == '0' && ur[i+1]== '0') {
-                        ur[i] = 1;
-                        c++;
-                    }
-                }
-                if(ur[string.length()-1] == '0' && ur[string.length()-2]=='0') {
-                    c++;
-                }
-                return c;
+    public static int countUrinals(String string){
+        if(Urinals.goodString(string)){
+            if(string.contains("11")) {
+                return -1;
             }
+            if(string.length() == 1) {
+                return string.contains("0") ? 1 : 0;
+            }
+            int c = 0;
+            char[] ur = string.toCharArray();
+            if(ur[0] == '0' && ur[1] == '0') {
+                ur[0] = '1';
+                c++;
+            }
+            for(int i = 1; i < string.length()-1; i++ ) {
+                if(ur[i] == '0' && ur[i-1] == '0' && ur[i+1]== '0') {
+                    ur[i] = 1;
+                    c++;
+                }
+            }
+            if(ur[string.length()-1] == '0' && ur[string.length()-2]=='0') {
+                c++;
+            }
+            return c;
         }
         return 0;
     }
@@ -99,5 +94,14 @@ public class Urinals {
             file.write(x.toString()+"\n");
         }
         file.close();
+    }
+
+    public static void execute() throws IOException, EmptyFileException {
+        List<String> inputStream = readInputFile(INPUT_PATH);
+        List<Integer> outputStream = new ArrayList<>();
+
+        inputStream.forEach(string -> outputStream.add(countUrinals(string)));
+
+        createOutputFile(outputStream);
     }
 }

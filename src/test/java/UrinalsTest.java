@@ -9,9 +9,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class UrinalsTest {
 
@@ -62,19 +60,19 @@ public class UrinalsTest {
     @Test
     void checkIfCountUrinalsReturnsExpectedOutput() {
         System.out.println("====== Akshay Reddy Kola == TEST EIGHT EXECUTED =======");
-        Assertions.assertEquals(1, Urinals.countUrinals(List.of("10001")));
-        Assertions.assertEquals(0, Urinals.countUrinals(List.of("1001")));
-        Assertions.assertEquals(3, Urinals.countUrinals(List.of("00000")));
-        Assertions.assertEquals(2, Urinals.countUrinals(List.of("0000")));
-        Assertions.assertEquals(1, Urinals.countUrinals(List.of("01000")));
+        Assertions.assertEquals(1, Urinals.countUrinals("10001"));
+        Assertions.assertEquals(0, Urinals.countUrinals("1001"));
+        Assertions.assertEquals(3, Urinals.countUrinals("00000"));
+        Assertions.assertEquals(2, Urinals.countUrinals("0000"));
+        Assertions.assertEquals(1, Urinals.countUrinals("01000"));
     }
 
     @Test
     void checkIfInputStringContainsAdjacentOnes() {
         System.out.println("====== Akshay Reddy Kola == TEST NINE EXECUTED =======");
-        Assertions.assertEquals(-1, Urinals.countUrinals(List.of("10011")));
-        Assertions.assertEquals(-1, Urinals.countUrinals(List.of("101101")));
-        Assertions.assertEquals(-1, Urinals.countUrinals(List.of("0011000")));
+        Assertions.assertEquals(-1, Urinals.countUrinals("10011"));
+        Assertions.assertEquals(-1, Urinals.countUrinals("101101"));
+        Assertions.assertEquals(-1, Urinals.countUrinals("0011000"));
     }
 
     void removePreviousFiles() {
@@ -125,5 +123,24 @@ public class UrinalsTest {
         Assertions.assertTrue(fileName1.exists());
         Assertions.assertTrue(fileName2.exists());
         Assertions.assertTrue(fileName3.exists());
+    }
+
+    @Test
+    void checkExecuteMethod() throws EmptyFileException, IOException {
+        removePreviousFiles();
+
+        Urinals.execute();
+
+        File fileName = new File("rule.txt");
+        List<String> expectedOutput = Arrays.asList("1","0","3","2","1");
+        List<String> actualOutput = new ArrayList<>();
+        Scanner scanner = new Scanner(fileName);
+
+        while (scanner.hasNextLine()) {
+            String line = scanner.nextLine();
+            actualOutput.add(line);
+        }
+
+        Assertions.assertEquals(actualOutput, expectedOutput);
     }
 }
